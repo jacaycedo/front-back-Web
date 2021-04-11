@@ -1,12 +1,20 @@
-import useSignUpForm from "../../hooks/signupHook";
+import useSignUpForm from "../hooks/signupHook";
+import * as Joi from "joi";
+
+const schema = Joi.object({
+  name: Joi.string().required(),
+  company: Joi.string().required(),
+  salary: Joi.number().required(),
+  city: Joi.string().required(),
+}); 
 
 function Signup() {
-    const { handleSubmit, handleInputChange } = useSignUpForm();
+     const { handleSubmit, handleInputChange } = useSignUpForm(schema);
     return (
       <div>
         <form onSubmit={handleSubmit}>
           <div>
-            <label htmlFor="name">name</label>
+            <label htmlFor="name">Name: </label>
             <input
               type="name"
               id="name"
@@ -17,7 +25,7 @@ function Signup() {
           </div>
   
           <div>
-            <label htmlFor="company">company</label>
+            <label htmlFor="company">Company: </label>
             <input
               type="company"
               id="company"
@@ -28,7 +36,7 @@ function Signup() {
           </div>
   
           <div>
-            <label htmlFor="salary">salary</label>
+            <label htmlFor="salary">Salary: </label>
             <input
               type="salary"
               id="salary"
@@ -38,7 +46,7 @@ function Signup() {
             />
           </div>
           <div>
-            <label htmlFor="city">salary</label>
+            <label htmlFor="city">City: </label>
             <input
               type="city"
               id="city"
@@ -52,5 +60,6 @@ function Signup() {
       </div>
     );
   }
+
   
   export default Signup;

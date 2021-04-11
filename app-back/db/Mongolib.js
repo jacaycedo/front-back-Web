@@ -26,5 +26,16 @@ const findDocuments = function (db, callback) {
     });
 }
 
+
+const insertDocuments = (db, callback, job) => {
+    const collection = db.collection('offers');
+    collection.insertMany([job], function (err, result) {
+        console.log("Inserting job!")
+        callback(result);
+    });
+}
+
+
 exports.getDatabase = getDatabase;
 exports.findDocuments = findDocuments;
+exports.insertDocuments = insertDocuments;

@@ -1,14 +1,13 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, getInitialState} from 'react';
 import Job from "./Job";
 
 export const Jobs = () => {
-
   const [state, setState] = useState([]);
-
-  useEffect(() => {
-    const url = "/offers";
+  useEffect(() => 
+  {
+    const url = "/offers";  
     fetch(url)
-      .then(res => {
+      .then(res => {  
         return res.json();
       }).then(offers => {
         setState({ offers })
@@ -17,7 +16,9 @@ export const Jobs = () => {
 
     return (
       <div>
-        {state.offers.map((e, i) => <Job key={i} offer={e} />)}
+        {state.offers? state.offers.map((e, i) =><Job key={i} offer={e} />):<p></p>}
       </div>
     );
 }
+
+export default Jobs;

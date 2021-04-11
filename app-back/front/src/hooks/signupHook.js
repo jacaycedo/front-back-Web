@@ -2,25 +2,26 @@ import { useState } from "react";
 
 
 const useSignUpForm = (schema) => {
-    const [inputs, setInputs] = useState({});
-    const [errors, setErrors] = useState("");
-  
-    const handleSubmit = (event) => {
+  const [inputs, setInputs] = useState({});
+  const [errors, setErrors] = useState("");
+  const handleSubmit = (event) => {
       event.preventDefault();
       const { error } = validate();
       if (!error) {
         const url = "/offers";
-        /* fetch(url, {
+        console.log(inputs);
+        fetch(url, {
             method: "POST",
             body: JSON.stringify({
-                title: "foo",
-                body: "bar",
-                userId: 1
+              name:inputs.name,
+              company:inputs.company,
+              salary:inputs.salary,
+              city:inputs.city
             }),
             headers: {
                 "Content-type": "application/json; charset=UTF-8"
             }
-        }) */
+        })
       } else {
         console.log(error);
         setErrors(error);
