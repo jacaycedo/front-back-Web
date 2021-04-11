@@ -1,27 +1,23 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import Job from "./Job";
 
-export default class Jobs extends React.Component {
+export const Jobs = () => {
 
-  componentDidMount() {
+  const [state, setState] = useState([]);
+
+  useEffect(() => {
     const url = "/offers";
     fetch(url)
       .then(res => {
         return res.json();
       }).then(offers => {
-        this.setState({ offers })
-      })
-  }
+        setState({ offers })
+      });
+  },[])
 
-  state = {
-    "offers": []
-  };
-
-  render() {
     return (
       <div>
-        {this.state.offers.map((e, i) => <Job key={i} offer={e} />)}
+        {state.offers.map((e, i) => <Job key={i} offer={e} />)}
       </div>
     );
-  }
 }
